@@ -12,20 +12,22 @@ typedef std::vector<Point> Polygon;
 
 double inline det(const Point &u, const Point &v) {
 	// TODO
-	return 0;
+	return u.real() * v.imag() - u.imag() * v.real();
 }
 
 struct Compare {
 	Point p0; // Leftmost point of the poly
 	bool operator ()(const Point &p1, const Point &p2) {
 		// TODO
-		return true;
+		double value = det(p1 - p0, p2 - p0);
+		if (value == 0) return p1.real() < p2.real();
+		else return value > 0;
 	}
 };
 
 bool inline salientAngle(Point &a, Point &b, Point &c) {
 	// TODO
-	return false;
+	return det(b - a, c - b) > 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -33,11 +35,20 @@ bool inline salientAngle(Point &a, Point &b, Point &c) {
 Polygon convex_hull(std::vector<Point> &points) {
 	Compare order;
 	// TODO
-	order.p0 = Point(0, 0);
+	order.p0 = Point(INT_MAX, INT_MAX);
+	for (Point point : points){
+		if (point.imag() < order.p0.imag() || (point.imag() == order.p0.imag() && point.real() < order.p0.real()))
+			order.p0 = point;
+	}
 	std::sort(points.begin(), points.end(), order);
 	Polygon hull;
 	// TODO
 	// use salientAngle(a, b, c) here
+	for (Point point : points){
+		while(hull.size() >= 2 && !salientAngle(hull[hull.size() - 2], hull[hull.size() - 1], point))
+			hull.pop_back();
+		hull.push_back(point);
+	}
 	return hull;
 }
 
@@ -47,6 +58,17 @@ std::vector<Point> load_xyz(const std::string &filename) {
 	std::vector<Point> points;
 	std::ifstream in(filename);
 	// TODO
+	if (!in.is_open()) {
+		throw std::runtime_error("failed to open file " + filename);
+	}
+	int n;	// the number of points
+	in >> n;
+	for (int i = 0; i < n; i++)
+	{
+		double x, y, z;
+		in >> x >> y >> z;
+		points.push_back(Point(x, y));
+	}
 	return points;
 }
 
@@ -74,5 +96,6 @@ int main(int argc, char * argv[]) {
 	std::vector<Point> points = load_xyz(argv[1]);
 	Polygon hull = convex_hull(points);
 	save_obj(argv[2], hull);
+	std::cout << "yes";
 	return 0;
 }

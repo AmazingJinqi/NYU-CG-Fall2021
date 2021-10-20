@@ -1,3 +1,16 @@
-Assignment_5/build/*
-Assignment_5/buildRelease/*
-.vscode/*
+# Distribution / packaging
+build/
+build_release/
+build_debug
+
+# VSCode
+.vscode/
+
+# IDEA
+.idea/
+
+# Zip files
+*.zip
+
+# Local OS metadata
+.DS_Store
