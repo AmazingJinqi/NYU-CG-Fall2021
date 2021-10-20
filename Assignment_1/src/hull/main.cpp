@@ -5,6 +5,7 @@
 #include <iostream>
 #include <numeric>
 #include <vector>
+#include <climits>
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef std::complex<double> Point;
