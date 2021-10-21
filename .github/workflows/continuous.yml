@@ -119,9 +119,11 @@ jobs:
       - uses: seanmiddleditch/gha-setup-ninja@master
 
       - name: Set env
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
           echo "::set-env name=appdata::$($env:LOCALAPPDATA)"
-
+          
       - name: Assignment_1
         shell: cmd
         run: |
