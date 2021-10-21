@@ -1,4 +1,4 @@
-![Build](https://github.com/danielepanozzo/cg/workflows/Build/badge.svg)
+![Build](https://github.com/AmazingJinqi/cg/workflows/Build/badge.svg)
 
 # Graduate Computer Graphics, CSCI-GA 2270-001 Fall 2021
 
