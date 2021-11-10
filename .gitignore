@@ -1,10 +1,16 @@
+# Distribution / packaging
+build/
+build_release/
+build_debug
+
+# VSCode
+.vscode/
+
+# IDEA
+.idea/
+
+# Zip files
+*.zip
+
 # Local OS metadata
 .DS_Store
-
-# Java class
-*.class
-
-# icon
-Icon?
-
-doc
