@@ -53,4 +53,5 @@ class FrameBufferAttributes
 class UniformAttributes
 {
 	public:
+	Eigen::Matrix4f view;
 };
