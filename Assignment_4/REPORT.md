@@ -52,7 +52,9 @@ I implemented AABB tree by the top-down construction. Then we can render the dra
 
 ### Result
 The origin camera:
+
 ![](result/raytrace_7.png?raw=true)
 
 After changing the parameters of the camera.
+
 ![](result/raytrace_8.png?raw=true)
