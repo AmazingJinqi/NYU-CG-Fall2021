@@ -33,7 +33,7 @@ In this exercise, you will implement different shading options for the triangles
 
 ![image](img/bunny.png)
 
-Both flat shading and per-vertex shading should use the same code in the shader program. The only difference lies in the attributes that are sent to the vertex shader. You can reuse the code from the ray-tracing assignment for the lighting equation (you should implement both *diffuse* and *specular* shading components in the fragment shader).
+Both flat shading and per-vertex shading should use the same code in the shader program. The only difference lies in the attributes that are sent to the vertex shader. You can reuse the code from the ray-tracing assignment for the lighting equation (you should implement both *diffuse* and *specular* shading components in the vertex, or fragment if you prefer, shader).
 
 Note that to perform flat shading, you will need to send per-face normal attributes to the shader program. However, with the provided rasterizer and for most modern APIs, it is only possible to send *per-vertex* attributes. One simple way to go around this limitation is simply to duplicate the input vertices for every triangle in the mesh. That is, from a pair **(V, F)** describing the mesh coordinates and triangles, build a new pair **(V', F')**, where every vertex from **V'** appears only once in **F'**.
 
@@ -44,7 +44,7 @@ Ex.3: Object Transformation
 
 For this exercise and the next, all transformations **must** be done in the vertex shader. 
 
-Add an option to tranlate the object toward the camera, while rotating around its barycenter. Produce 3 gif videos, one for each rendering type used above.
+Add an option to translate the object toward the camera, while rotating around its barycenter. Produce 3 gif videos, one for each rendering type used above.
 
 
 Ex.4: Camera

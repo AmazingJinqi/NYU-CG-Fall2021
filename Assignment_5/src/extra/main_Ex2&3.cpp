@@ -38,7 +38,7 @@ void load_off(const std::string &filename, Eigen::MatrixXf &V, Eigen::MatrixXi &
 int main() {
 
     // The Framebuffer storing the image rendered by the rasterizer
-    Eigen::Matrix<FrameBufferAttributes, Eigen::Dynamic, Eigen::Dynamic> frameBuffer(1000, 500);
+    Eigen::Matrix<FrameBufferAttributes, Eigen::Dynamic, Eigen::Dynamic> frameBuffer(1000, 1000);
 
     // Global Constants (empty in this example)
     UniformAttributes uniform;
@@ -82,7 +82,7 @@ int main() {
                                     min(out.color(1), float(1)),
                                     min(out.color(2), float(1)));
 
-        out.position = uniform.view * uniform.M_projection * out.position;
+        out.position = uniform.M_projection * out.position;
         return out;
     };
 
@@ -118,12 +118,8 @@ int main() {
             0, 2 / (t - b), 0, -(t + b) / (t - b),
             0, 0, 2 / (n - f), -(n + f) / (n - f),
             0, 0, 0, 1;
-    Eigen::Matrix4f P;
-    P << n, 0, 0, 0,
-            0, n, 0, 0,
-            0, 0, n + f, -(f * n),
-            0, 0, 1, 0;
-    uniform.M_projection = M_orth * P;
+
+    uniform.M_projection = M_orth;
 
     Eigen::Vector3f E(0, 0, 5);  //camera position
     Eigen::Vector3f G(0, 0, -1);   //gaze direction
@@ -159,20 +155,6 @@ int main() {
             0, 0, 7, 0,
             0, 0, 0, 1;
     uniform.M_model = M_scale * M_translation;
-
-    // Add a transformation to compensate for the aspect ratio of the framebuffer
-    float aspect_ratio = float(frameBuffer.cols()) / float(frameBuffer.rows());
-
-    uniform.view <<
-                 1, 0, 0, 0,
-            0, 1, 0, 0,
-            0, 0, 1, 0,
-            0, 0, 0, 1;
-
-    if (aspect_ratio < 1)
-        uniform.view(0, 0) = aspect_ratio;
-    else
-        uniform.view(1, 1) = 1 / aspect_ratio;
 
     if (uniform.shading_option == "Wireframe") {
         for (int i = 0; i < F.rows(); ++i) {
