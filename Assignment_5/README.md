@@ -44,7 +44,7 @@ Ex.3: Object Transformation
 
 For this exercise and the next, all transformations **must** be done in the vertex shader. 
 
-Add an option to tranlate the object toward the camera, while rotating around its barycenter. Produce 3 gif videos, one for each rendering type used above.
+Add an option to translate the object toward the camera, while rotating around its barycenter. Produce 3 gif videos, one for each rendering type used above.
 
 
 Ex.4: Camera
