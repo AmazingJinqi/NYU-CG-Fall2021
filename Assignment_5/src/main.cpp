@@ -38,7 +38,7 @@ void load_off(const std::string &filename, Eigen::MatrixXf &V, Eigen::MatrixXi &
 int main() {
 
     // The Framebuffer storing the image rendered by the rasterizer
-    Eigen::Matrix<FrameBufferAttributes, Eigen::Dynamic, Eigen::Dynamic> frameBuffer(500, 1000);
+    Eigen::Matrix<FrameBufferAttributes, Eigen::Dynamic, Eigen::Dynamic> frameBuffer(1000, 500);
 
     // Global Constants (empty in this example)
     UniformAttributes uniform;

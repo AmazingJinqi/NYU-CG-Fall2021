@@ -75,21 +75,29 @@ int main() {
         vertices.push_back(VertexAttributes(V(F(i, 2), 0), V(F(i, 2), 1), V(F(i, 2), 2)));
     }
 
-    Eigen::Matrix4f M_model;
-    M_model << 7, 0, 0, 0.1,
-            0, 7, 0, -0.7,
+    Eigen::Vector3f barycenter(V.col(0).sum() / V.rows(), V.col(1).sum() / V.rows(), V.col(2).sum() / V.rows());
+
+    Eigen::Matrix4f M_translation;
+    M_translation << 1, 0, 0, -barycenter(0),
+            0, 1, 0, -barycenter(1),
+            0, 0, 1, -barycenter(2),
+            0, 0, 0, 1;
+    Eigen::Matrix4f M_scale;
+    M_scale << 7, 0, 0, 0,
+            0, 7, 0, 0,
             0, 0, 7, 0,
             0, 0, 0, 1;
+    Eigen::Matrix4f M_model = M_scale * M_translation;
 
     Eigen::Matrix4f M_orth;
-    float l = -1, b = -1, n = 2;
-    float r = 1, t = 1, f = -4;
+    float l = -1, b = -1, n = -4;
+    float r = 1, t = 1, f = -6;
     M_orth << 2 / (r - l), 0, 0, -(r + l) / (r - l),
             0, 2 / (t - b), 0, -(t + b) / (t - b),
             0, 0, 2 / (n - f), -(n + f) / (n - f),
             0, 0, 0, 1;
 
-    Eigen::Vector3f E(0, 0, 2);  //camera position
+    Eigen::Vector3f E(0, 0, 5);  //camera position
     Eigen::Vector3f G(0, 0, -1);   //gaze direction
     Eigen::Vector3f T(0, 1, 0);   //view up vector
 
@@ -105,11 +113,10 @@ int main() {
     uniform.view = M_orth * M_cam * M_model;
 
     rasterize_triangles(program, uniform, vertices, frameBuffer);
-//    rasterize_lines(program, uniform, vertices, 1, frameBuffer);
 
     vector<uint8_t> image;
     framebuffer_to_uint8(frameBuffer, image);
-    stbi_write_png("triangle.png", frameBuffer.rows(), frameBuffer.cols(), 4, image.data(), frameBuffer.rows() * 4);
+    stbi_write_png("bunny.png", frameBuffer.rows(), frameBuffer.cols(), 4, image.data(), frameBuffer.rows() * 4);
 
     return 0;
 }
