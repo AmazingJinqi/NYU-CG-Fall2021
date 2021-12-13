@@ -21,11 +21,13 @@ public:
         VertexAttributes r;
         r.position = alpha * a.position + beta * b.position + gamma * c.position;
         r.color = alpha * a.color + beta * b.color + gamma * c.color;
+        r.triangle_index = a.triangle_index;
         return r;
     }
 
     Eigen::Vector4f position;
     Eigen::Vector4f color;
+    int triangle_index = -1;
 };
 
 class FragmentAttributes {
@@ -35,6 +37,7 @@ public:
     }
 
     Eigen::Vector4f color;
+    float depth = 0;
 };
 
 class FrameBufferAttributes {
@@ -44,8 +47,11 @@ public:
     }
 
     Eigen::Matrix<uint8_t, 4, 1> color;
+    float depth = 0;
 };
 
 class UniformAttributes {
 public:
+    std::vector<Eigen::Matrix4f> transforms;
+    int selected_index = -1;
 };
