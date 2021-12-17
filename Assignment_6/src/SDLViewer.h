@@ -30,8 +30,7 @@ KMOD_GUI (KMOD_LGUI|KMOD_RGUI)
  *
  */
 
-class SDLViewer
-{
+class SDLViewer {
 public:
     SDLViewer();
 
@@ -41,10 +40,10 @@ public:
     void resize(const int w, const int h);
 
     bool draw_image(
-        const Eigen::Matrix<uint8_t, Eigen::Dynamic, Eigen::Dynamic> &R,
-        const Eigen::Matrix<uint8_t, Eigen::Dynamic, Eigen::Dynamic> &G,
-        const Eigen::Matrix<uint8_t, Eigen::Dynamic, Eigen::Dynamic> &B,
-        const Eigen::Matrix<uint8_t, Eigen::Dynamic, Eigen::Dynamic> &A);
+            const Eigen::Matrix<uint8_t, Eigen::Dynamic, Eigen::Dynamic> &R,
+            const Eigen::Matrix<uint8_t, Eigen::Dynamic, Eigen::Dynamic> &G,
+            const Eigen::Matrix<uint8_t, Eigen::Dynamic, Eigen::Dynamic> &B,
+            const Eigen::Matrix<uint8_t, Eigen::Dynamic, Eigen::Dynamic> &A);
 
     void launch(const int redraw_interval = 30);
 
