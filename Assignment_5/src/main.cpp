@@ -5,6 +5,8 @@
 #include <fstream>
 #include <Eigen/Geometry>
 #include <gif.h>
+#include <math.h>
+
 
 // Utilities for the Assignment
 #include "raster.h"
