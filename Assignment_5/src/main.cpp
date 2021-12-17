@@ -5,8 +5,6 @@
 #include <fstream>
 #include <Eigen/Geometry>
 #include <gif.h>
-#include <math.h>
-
 
 // Utilities for the Assignment
 #include "raster.h"
@@ -15,6 +13,8 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION // Do not include this line twice in your project!
 
 #include "stb_image_write.h"
+
+#define M_PI        3.14159265358979323846264338327950288   /* pi             */
 
 using namespace std;
 
