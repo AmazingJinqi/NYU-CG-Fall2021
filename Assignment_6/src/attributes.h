@@ -52,6 +52,17 @@ public:
 
 class UniformAttributes {
 public:
-    std::vector<Eigen::Matrix4f> transforms;
-    int selected_index = -1;
+    Eigen::Matrix4f camera_transform;
+    int selected_triangle = -1;
+    Eigen::Vector4f selected_triangle_color[3];
+    int selected_vertex = -1;
+    Eigen::Vector4f colors[9] = {Eigen::Vector4f(0, 0, 0, 1),
+                                 Eigen::Vector4f(1, 1, 1, 1),
+                                 Eigen::Vector4f(1, 0, 0, 1),
+                                 Eigen::Vector4f(0, 1, 0, 1),
+                                 Eigen::Vector4f(0, 0, 1, 1),
+                                 Eigen::Vector4f(1, 1, 0, 1),
+                                 Eigen::Vector4f(1, 0, 1, 1),
+                                 Eigen::Vector4f(0, 1, 1, 1),
+                                 Eigen::Vector4f(0.5, 0.5, 0.5, 1),};
 };
