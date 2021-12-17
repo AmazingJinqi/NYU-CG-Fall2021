@@ -5,7 +5,6 @@
 
 #include <functional>
 #include <iostream>
-#include <unistd.h>
 
 #include "raster.h"
 
